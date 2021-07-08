@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 
 namespace fatorial_recursivo
 {
+
+
     class Fatorial
     {
         private int i; //numero a ser calculado o fatorial
@@ -44,10 +47,30 @@ namespace fatorial_recursivo
 
         static void Main(string[] args)
         {
+            //  minha ideia de integrar o linq ao programa de fatorial recursivo foi de
+            //dada uma entrada n, o programa calcula o fatorial de zero a n e mostra somente os
+            //que forem pares
+            // The Three Parts of a LINQ Query:
+            // 1. Data source.
+            Console.WriteLine("entre com o valor do intervalo n:");
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] numbers = new int[n];
+            for (int a = 0; a < n; a++) {
+                Fatorial fat = new Fatorial(a);
+                numbers[a] = fat.getFatorial(a);    
+            }
             
-            int i = Convert.ToInt32(Console.ReadLine());
-            Fatorial fat = new Fatorial(i);
-            fat.mostrar();
+            // 2. Query creation.
+            // numQuery is an IEnumerable<int>
+            var numQuery =
+                from num in numbers
+                where (num % 2) == 0
+                select num;
+
+            // 3. Query execution.
+            foreach (int num in numQuery) {
+                Console.Write("{0,1} ", num);
+            }
         }
     }
 }
