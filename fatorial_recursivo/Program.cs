@@ -6,6 +6,7 @@ namespace fatorial_recursivo
     {
         private int i; //numero a ser calculado o fatorial
         private int fat;//resultado do calculo
+        private int pilha = -1;
         public Fatorial(int n)
         {
             Console.WriteLine("Calculando fatorial...");
@@ -18,14 +19,18 @@ namespace fatorial_recursivo
         }
         public int getFatorial(int n)
         {
-            int temp;
+            int temp = n;
+            pilha++;
             if (n <= 1)
             {
+                Console.WriteLine("chamada {0}, valor de temp {1}", pilha, temp);
                 return 1;
             }
             else
             {
+                Console.WriteLine("chamada {0}, valor de temp {1}", pilha, temp);
                 temp = n * getFatorial(n - 1);
+                
                 return temp;
             }
         }
