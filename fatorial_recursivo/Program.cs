@@ -12,7 +12,6 @@ namespace fatorial_recursivo
         private int pilha = -1;
         public Fatorial(int n)
         {
-            Console.WriteLine("Calculando fatorial...");
             i = n;
             fat = getFatorial(i);
         }
@@ -23,6 +22,9 @@ namespace fatorial_recursivo
         public int getFatorial(int n)
         {
             int temp = n;
+            if (pilha < 0) {
+                Console.WriteLine("Calculando fatorial de {0}", n);
+            }
             pilha++;
             if (n <= 1)
             {
